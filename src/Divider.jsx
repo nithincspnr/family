@@ -1,7 +1,3 @@
-import React from "react";
-
-const Divider = () => {
-  return <hr />;
-};
+const Divider = () => <hr />;
 
 export default Divider;

@@ -1,26 +1,25 @@
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import "./App.css";
-import Divider from "./Divider";
-import Footer from "./Footer";
 import "./index.css";
 import Layout from "./Layout";
-import { Avatar } from "./profile";
-import ProfileItem from "./profile/ProfileItem";
+import Profile from "./profile";
+import Search from "./search";
 
 function App() {
   return (
     <Layout>
-      <Avatar />
-      <Divider />
-      <p>Partner</p>
-      <ProfileItem />
-      <Divider />
-      <p>Children</p>
-      <ProfileItem />
-      <ProfileItem />
-      <Divider />
-      <p>Parents</p>
-      <ProfileItem />
-      <Footer />
+      <Router>
+        <Switch>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+          <Route path="/">Login</Route>
+        </Switch>
+      </Router>
     </Layout>
   );
 }

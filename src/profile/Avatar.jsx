@@ -1,13 +1,7 @@
-import React from "react";
+import ProfilePic from "../assets/profile-pic.svg";
 
-import ProfilePic from "../assets/profile-male.svg";
-
-const Avatar = () => {
-  return (
-    <div>
-      <img src={ProfilePic} />
-    </div>
-  );
+const Avatar = ({ width, height, ...rest }) => {
+  return <img width={width} height={height} src={ProfilePic} {...rest} />;
 };
 
 export default Avatar;

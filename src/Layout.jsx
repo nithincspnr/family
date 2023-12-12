@@ -1,5 +1,3 @@
-import React from "react";
-
 // max-width: 24rem; /* 384px */
 const Layout = (props) => {
   return (
