@@ -1,6 +1,7 @@
 import Header from "./Header";
 import Results from "./Results";
 import SearchBox from "./Search";
+import Loader from "../loader";
 
 function Search() {
   return (
@@ -8,6 +9,7 @@ function Search() {
       <Header />
       <SearchBox />
       <Results />
+      <Loader isProfileItem />
     </div>
   );
 }

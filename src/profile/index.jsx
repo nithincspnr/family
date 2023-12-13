@@ -1,5 +1,6 @@
 import Divider from "../Divider";
 import Footer from "../Footer";
+import Loader from "../loader";
 import Avatar from "./Avatar";
 import ProfileItem from "./ProfileItem";
 
@@ -15,7 +16,8 @@ function Profile() {
           </div>
         </div>
       </div>
-      {/* <Divider /> */}
+
+      {/* <Loader isProfile /> */}
 
       {/*  */}
       <p className="pl-4 text-lg font-semibold">PARTNER</p>
@@ -23,6 +25,7 @@ function Profile() {
       <Divider />
       <p className="pl-4 pt-4 text-lg font-semibold">CHILDREN</p>
       <ProfileItem />
+      <Loader isProfileItem />
       <ProfileItem />
       <Divider />
       <p className="pl-4 pt-4 text-lg font-semibold">PARENTS</p>

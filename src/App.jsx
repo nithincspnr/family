@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import "./App.css";
 import "./index.css";
@@ -17,7 +17,11 @@ function App() {
           <Route path="/search">
             <Search />
           </Route>
-          <Route path="/">Login</Route>
+          <Route path="/">
+            Login
+            <br />
+            <Link to="/profile">Profile</Link>
+          </Route>
         </Switch>
       </Router>
     </Layout>
