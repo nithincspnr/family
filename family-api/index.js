@@ -13,9 +13,9 @@ fastify.register(require("@fastify/cors"), (instance) => {
       origin: true,
     };
     // do not include CORS headers for requests from localhost
-    if (/^localhost$/m.test(req.headers.origin)) {
-      corsOptions.origin = false;
-    }
+    // if (/^localhost$/m.test(req.headers.origin)) {
+    //   corsOptions.origin = false;
+    // }
     // callback expects two parameters: error and options
     callback(null, corsOptions);
   };

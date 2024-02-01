@@ -1,5 +1,5 @@
 module.exports = async function (app, opts) {
-  // get Profile
+  // Get Profile
   app.get("/profile/:id", async (request, reply) => {
     // Main Profile information
     const P1 = app.pg.query(
@@ -14,9 +14,10 @@ module.exports = async function (app, opts) {
                       (select
                           P.id,
                           P.partner_id,
+                          P.parent_1_id parent_1_id,
+                          P.parent_2_id parent_2_id,
                           P.name, P.place, P.image_url,
-                          P1.name parent1_name, P1.place parent1_place, P1.image_url parent1_image_url,
-                          P.parent_2_id parent_2_id
+                          P1.name parent1_name, P1.place parent1_place, P1.image_url parent1_image_url
                       from
                           profiles P
                       left join profiles P1 on P1.id = P.parent_1_id where P.id = $1) L1 -- Join for parent 1
@@ -26,12 +27,24 @@ module.exports = async function (app, opts) {
     );
     // Children
     const P2 = app.pg.query(
-      `select name, place, image_url from profiles where parent_1_id = $1 or parent_2_id = $1`,
+      `select id, name, place, image_url from profiles where parent_1_id = $1 or parent_2_id = $1`,
       [request.params.id]
     );
 
     const [result1, results2] = await Promise.all([P1, P2]);
 
     return { ...result1.rows[0], children: results2.rows };
+  });
+
+  // Search Profiles
+  app.get("/search", async (request, reply) => {
+    // Main Profile information
+    const queryPromise = app.pg.query(
+      `select p.id, p.name, p.place, p.image_url from profiles p where p."name" ilike $1 or p.place ilike $1`,
+      [`${request.query.q}%`]
+    );
+    const { rows = [] } = await queryPromise;
+
+    return { results: rows };
   });
 };

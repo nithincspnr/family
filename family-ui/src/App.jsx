@@ -25,7 +25,7 @@ function App() {
             <Route path="/">
               Login
               <br />
-              <Link to="/profile">Profile</Link>
+              <Link to="/profile/1">Profile</Link>
             </Route>
           </Switch>
         </Router>

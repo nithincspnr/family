@@ -1,15 +1,41 @@
+import axios from "axios";
+import { useState } from "react";
+import { useQuery } from "react-query";
+
 import Header from "./Header";
-import Results from "./Results";
-import SearchBox from "./Search";
-import Loader from "../loader";
+import ProfileResult from "./ProfileResult";
+import SearchBox from "./SearchBox";
+
+const searchProfiles = async ({ queryKey }) => {
+  const [_, query] = queryKey;
+  const response = await axios.get(`http://127.0.0.1:4000/search?q=${query}`);
+  return response.data;
+};
 
 function Search() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const {
+    data = { results: [] },
+    error,
+    isLoading,
+    refetch,
+  } = useQuery(["searchProfiles", searchQuery], searchProfiles, {
+    enabled: false,
+  });
+
+  const onSearchSubmit = (query) => {
+    if (query && query?.length > 2) {
+      setSearchQuery(query);
+      refetch();
+    }
+  };
+
   return (
     <div>
       <Header />
-      <SearchBox />
-      <Results />
-      <Loader isProfileItem />
+      <SearchBox onSearchSubmit={onSearchSubmit} />
+      <ProfileResult profiles={data.results || []} />
     </div>
   );
 }
