@@ -41,7 +41,7 @@ module.exports = async function (app, opts) {
     // Main Profile information
     const queryPromise = app.pg.query(
       `select p.id, p.name, p.place, p.image_url from profiles p where p."name" ilike $1 or p.place ilike $1`,
-      [`${request.query.q}%`]
+      [`%${request.query.q}%`]
     );
     const { rows = [] } = await queryPromise;
 

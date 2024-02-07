@@ -25,9 +25,10 @@ function Search() {
   });
 
   const onSearchSubmit = (query) => {
+    setSearchQuery(query);
     if (query && query?.length > 2) {
-      setSearchQuery(query);
-      refetch();
+      // When refetch triggered, it was using previous searchQuery value
+      setTimeout(() => refetch());
     }
   };
 
@@ -35,7 +36,11 @@ function Search() {
     <div>
       <Header />
       <SearchBox onSearchSubmit={onSearchSubmit} />
-      <ProfileResult profiles={data.results || []} />
+      <ProfileResult
+        error={error}
+        isLoading={isLoading}
+        profiles={data.results}
+      />
     </div>
   );
 }

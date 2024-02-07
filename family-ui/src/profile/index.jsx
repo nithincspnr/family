@@ -2,11 +2,11 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
-import Divider from "../Divider";
-import Footer from "../Footer";
-// import Loader from "../loader";
 import Avatar from "./Avatar";
+import Footer from "../Footer";
+import Divider from "../Divider";
 import ProfileItem from "./ProfileItem";
+import LoadingProfile from "./LoadingProfile";
 
 const retrieveProfile = async ({ queryKey }) => {
   const [_, profileId] = queryKey;
@@ -21,17 +21,15 @@ function Profile() {
 
   const { data, isLoading } = useQuery(["profileData", id], retrieveProfile);
 
-  // console.log(data);
-
   if (isLoading) {
-    return null;
+    return <LoadingProfile />;
   }
 
   let partner = null;
   if (data.partner_id) {
     partner = (
       <>
-        <p className="pl-4 text-lg font-semibold">PARTNER</p>
+        <p className="pl-4 pt-4 text-lg font-semibold">PARTNER</p>
         <ProfileItem
           id={data.partner_id}
           name={data.partner_name}
@@ -106,16 +104,12 @@ function Profile() {
         </div>
       </div>
 
-      {/* <Loader isProfile /> */}
-
       {partner}
 
       {children}
 
-      {/* <Loader isProfileItem /> */}
-      {/* <Divider /> */}
-
       {parents}
+
       <Footer />
     </>
   );
