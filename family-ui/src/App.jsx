@@ -4,8 +4,9 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import "./App.css";
 import "./index.css";
 import Layout from "./Layout";
-import Profile from "./profile";
 import Search from "./search";
+import Profile from "./profile";
+import Admin from "./admin";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -13,23 +14,33 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Layout>
-        <Router>
-          <Switch>
-            <Route path="/profile/:id">
+      <Router>
+        <Switch>
+          {/* Admin */}
+          <Route path="/admin/1">
+            <Admin />
+          </Route>
+          <Layout>
+            {/* App */}
+            <Route exact path="/profile/:id">
               <Profile />
             </Route>
             <Route path="/search">
               <Search />
+            </Route>
+            <Route path="/login">
+              Login
+              <br />
+              <Link to="/profile/1">Profile</Link>
             </Route>
             <Route path="/">
               Login
               <br />
               <Link to="/profile/1">Profile</Link>
             </Route>
-          </Switch>
-        </Router>
-      </Layout>
+          </Layout>
+        </Switch>
+      </Router>
     </QueryClientProvider>
   );
 }
