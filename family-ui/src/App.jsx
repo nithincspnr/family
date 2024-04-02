@@ -1,48 +1,62 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
 
 import "./App.css";
 import "./index.css";
-import Layout from "./Layout";
+
 import Search from "./search";
+import Layout from "./Layout";
 import Profile from "./profile";
-import Admin from "./admin";
+// import Admin from "./admin";
 
 // Create a client
 const queryClient = new QueryClient();
 
-function App() {
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<>Hello world</>} />
+      <Route path="search" element={<Search />} />
+      <Route path="profile/:id" element={<Profile />} />
+
+      <Route path="*" element={<p>Not found</p>} />
+    </Route>
+  )
+);
+
+const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
+      <RouterProvider router={router} />
+      {/* <Router>
         <Switch>
-          {/* Admin */}
-          <Route path="/admin/1">
+         
+          <Route path="/admin">
             <Admin />
           </Route>
+          
           <Layout>
-            {/* App */}
+            <Route exact path="/">
+              <Link to="/admin">Go to admin</Link>
+              <br />
+              <Link to="/search">Go to Search</Link>
+            </Route>
+            <Route exact path="/search">
+              <Search />
+            </Route>
             <Route exact path="/profile/:id">
               <Profile />
             </Route>
-            <Route path="/search">
-              <Search />
-            </Route>
-            <Route path="/login">
-              Login
-              <br />
-              <Link to="/profile/1">Profile</Link>
-            </Route>
-            <Route path="/">
-              Login
-              <br />
-              <Link to="/profile/1">Profile</Link>
-            </Route>
           </Layout>
         </Switch>
-      </Router>
+      </Router> */}
     </QueryClientProvider>
   );
-}
+};
 
 export default App;

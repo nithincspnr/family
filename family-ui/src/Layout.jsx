@@ -1,8 +1,9 @@
-// max-width: 24rem; /* 384px */
-const Layout = (props) => {
+import { Outlet } from "react-router-dom";
+
+const Layout = () => {
   return (
     <div className="container mx-auto max-w-sm h-full bg-white">
-      {props.children}
+      <Outlet />
     </div>
   );
 };
