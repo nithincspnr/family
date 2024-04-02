@@ -38,13 +38,28 @@ module.exports = async function (app, opts) {
 
   // Search Profiles
   app.get("/search", async (request, reply) => {
-    // Main Profile information
-    const queryPromise = app.pg.query(
-      `select p.id, p.name, p.place, p.image_url from profiles p where p."name" ilike $1 or p.place ilike $1`,
-      [`%${request.query.q}%`]
-    );
-    const { rows = [] } = await queryPromise;
+    const DEFAULT_LIMIT = 10;
+    const params = [`%${request.query.q}%`];
 
+    if (request.query.limit) {
+      params.push(request.query.limit);
+    } else {
+      params.push(DEFAULT_LIMIT);
+    }
+
+    const queryPromise = app.pg.query(
+      `select p.id, p.name, p.place, p.image_url from profiles p where p."name" ilike $1 or p.place ilike $1 limit $2`,
+      params
+    );
+
+    const { rows = [] } = await queryPromise;
     return { results: rows };
+  });
+
+  // Admin
+  // Add profile
+  app.post("/admin/add-profile", async (request, reply) => {
+    console.log(request);
+    return { results: [] };
   });
 };
