@@ -3,22 +3,30 @@ import { getItem, setItem } from "../utils/local-storage";
 import { useNavigate } from "react-router-dom";
 
 const UIToken = "login";
+const AdminUIToken = "admin";
 
 const Login = () => {
   const inputRef = useRef();
   const navigate = useNavigate();
   const isLoggedIn = getItem("isLoggedIn");
+  const isAdminLoggedIn = getItem("isLoggedIn");
 
   useEffect(() => {
-    if (isLoggedIn === "true") {
-      navigate("/search");
+    if ([isLoggedIn, isAdminLoggedIn].includes("true")) {
+      navigate("app/search");
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, isAdminLoggedIn, navigate]);
 
   const onButtonClick = () => {
-    if (inputRef.current.value === UIToken) {
-      setItem("isLoggedIn", true);
-      navigate("/search");
+    const input = inputRef.current.value;
+    if ([UIToken, AdminUIToken].includes(input)) {
+      if (UIToken === input) {
+        setItem("isLoggedIn", true);
+      }
+      if (AdminUIToken === input) {
+        setItem("isAdminLoggedIn", true);
+      }
+      navigate("app/search");
     }
   };
 

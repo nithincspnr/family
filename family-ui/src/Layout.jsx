@@ -8,7 +8,10 @@ const Layout = () => {
 
   useEffect(() => {
     if (isLoggedIn !== "true") {
-      navigate("./");
+      console.log("here");
+      navigate("./login");
+    } else {
+      navigate("./search");
     }
   }, [isLoggedIn, navigate]);
 
