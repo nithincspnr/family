@@ -13,6 +13,7 @@ import Search from "./search";
 import Layout from "./Layout";
 import Profile from "./profile";
 // import Admin from "./admin";
+import Login from "./components/Login";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -20,7 +21,7 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<>Hello world</>} />
+      <Route index element={<Login />} />
       <Route path="search" element={<Search />} />
       <Route path="profile/:id" element={<Profile />} />
 
