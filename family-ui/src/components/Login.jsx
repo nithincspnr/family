@@ -2,18 +2,18 @@ import { useEffect, useRef } from "react";
 import { getItem, setItem } from "../utils/local-storage";
 import { useNavigate } from "react-router-dom";
 
-const UIToken = "login";
+const UIToken = "token";
 const AdminUIToken = "admin";
 
 const Login = () => {
   const inputRef = useRef();
   const navigate = useNavigate();
   const isLoggedIn = getItem("isLoggedIn");
-  const isAdminLoggedIn = getItem("isLoggedIn");
+  const isAdminLoggedIn = getItem("isAdminLoggedIn");
 
   useEffect(() => {
-    if ([isLoggedIn, isAdminLoggedIn].includes("true")) {
-      navigate("app/search");
+    if ([isLoggedIn].includes("true")) {
+      navigate("search");
     }
   }, [isLoggedIn, isAdminLoggedIn, navigate]);
 
@@ -26,7 +26,7 @@ const Login = () => {
       if (AdminUIToken === input) {
         setItem("isAdminLoggedIn", true);
       }
-      navigate("app/search");
+      navigate("../search");
     }
   };
 

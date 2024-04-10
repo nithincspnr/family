@@ -1,8 +1,8 @@
-import Loader from "../loader";
-import Divider from "../Divider";
+import { Fragment } from "react";
+import { Loader, Divider } from "../shared";
 import ProfileItem from "../profile/ProfileItem";
 
-function ProfileResult({ profiles, isLoading }) {
+const ProfileResult = ({ profiles, isLoading }) => {
   return (
     <>
       <h3 className="text-sm font-black mt-8 mb-6 px-4">ALL RESULTS</h3>
@@ -14,20 +14,19 @@ function ProfileResult({ profiles, isLoading }) {
         </>
       ) : (
         profiles?.map(({ id, name, place, image_url }) => (
-          <>
+          <Fragment key={`${id}-${name}`}>
             <ProfileItem
               id={id}
               name={name}
               place={place}
               imageUrl={image_url}
-              key={`${id}-${name}`}
             />
             <Divider key={id} />
-          </>
+          </Fragment>
         ))
       )}
     </>
   );
-}
+};
 
 export default ProfileResult;

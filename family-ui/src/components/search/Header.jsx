@@ -1,6 +1,6 @@
 // import { useHistory } from "react-router-dom";
 
-import BackButtonIcon from "../assets/back-icon.svg";
+import BackButtonIcon from "@assets/back-icon.svg";
 
 function Header() {
   // const history = useHistory();

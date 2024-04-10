@@ -1,5 +1,5 @@
-import Loader from "../loader";
-import Footer from "../Footer";
+import { Loader } from "@shared";
+import Footer from "../shared/Footer";
 
 function LoadingProfile() {
   return (

@@ -1,4 +1,4 @@
-import Divider from "../Divider";
+import {Divider} from "@shared";
 
 function Loader(props) {
   if (props.isProfileItem) {

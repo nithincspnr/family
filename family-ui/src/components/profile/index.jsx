@@ -3,8 +3,8 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
 import Avatar from "./Avatar";
-import Footer from "../Footer";
-import Divider from "../Divider";
+import Footer from "../shared/Footer";
+import { Divider } from "@shared";
 import ProfileItem from "./ProfileItem";
 import LoadingProfile from "./LoadingProfile";
 

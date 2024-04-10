@@ -1,4 +1,4 @@
-import ProfilePic from "../assets/profile-pic.svg";
+import ProfilePic from "@assets/profile-pic.svg";
 
 const Avatar = ({ width, height, imageUrl, ...rest }) => {
   return (

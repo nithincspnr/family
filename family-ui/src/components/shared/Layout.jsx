@@ -1,17 +1,17 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { localStorage } from "./utils";
+import { localStorage } from "../../utils";
 
 const Layout = () => {
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem("isLoggedIn");
+  // const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn");
 
   useEffect(() => {
-    if (isLoggedIn !== "true") {
-      console.log("here");
-      navigate("./login");
+    if (![isLoggedIn].includes("true")) {
+      navigate("login");
     } else {
-      navigate("./search");
+      navigate("search");
     }
   }, [isLoggedIn, navigate]);
 
