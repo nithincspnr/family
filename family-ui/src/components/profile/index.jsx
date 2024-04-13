@@ -1,12 +1,14 @@
 import axios from "axios";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
 import Avatar from "./Avatar";
-import Footer from "../shared/Footer";
-import { Divider } from "@shared";
+import Header from "./Header";
 import ProfileItem from "./ProfileItem";
+import { Divider, Footer } from "@shared";
 import LoadingProfile from "./LoadingProfile";
+import "./style.css";
 
 const retrieveProfile = async ({ queryKey }) => {
   const [_, profileId] = queryKey;
@@ -16,14 +18,21 @@ const retrieveProfile = async ({ queryKey }) => {
   return response.data;
 };
 
-function Profile() {
+const Profile = () => {
   const { id } = useParams();
-
+  const [showImage, setShowImage] = useState(false);
   const { data, isLoading } = useQuery(["profileData", id], retrieveProfile);
 
   if (isLoading) {
     return <LoadingProfile />;
   }
+
+  const onImageClick = () => {
+    if (!data.image_url) {
+      return;
+    }
+    setShowImage(true);
+  };
 
   let partner = null;
   if (data.partner_id) {
@@ -87,11 +96,14 @@ function Profile() {
 
   return (
     <>
+      <Header />
+      {/* Profile content */}
       <div className="py-8">
         <Avatar
           width={128}
           height={128}
           className="mx-auto"
+          onClick={onImageClick}
           imageUrl={data.image_url}
         />
         <div className="pt-8 flex justify-center items-center">
@@ -99,21 +111,32 @@ function Profile() {
             <h2 className="text-3xl flex justify-center items-center">
               {data.name}
             </h2>
-            <p className="mt-4 text-sm font-black text-center">{data.place}</p>
+            <p className="mt-2 text-sm font-black text-center">{data.place}</p>
+            <p className="mt-2 text-sm font-black text-center">
+              {data.contact_number}
+            </p>
           </div>
         </div>
       </div>
-
       {partner}
-
       {children}
-
       {parents}
-
       <Footer />
+
+      {/* Image modal */}
+      {showImage ? (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setShowImage(false)}>
+              &times;
+            </span>
+            <img className="modal-image" src={data.image_url} />
+          </div>
+        </div>
+      ) : null}
     </>
   );
-}
+};
 
 export default Profile;
 

@@ -6,7 +6,7 @@ const Avatar = ({ width, height, imageUrl, ...rest }) => {
       width={width}
       height={height}
       src={imageUrl || ProfilePic}
-      style={{ borderRadius: "50%" }}
+      style={{ borderRadius: "50%", cursor: "pointer" }}
       {...rest}
     />
   );

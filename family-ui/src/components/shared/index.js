@@ -1,4 +1,6 @@
-import Divider from "./Divider";
 import Loader from "./Loader";
+import Layout from "./Layout";
+import Footer from "./Footer";
+import Divider from "./Divider";
 
-export { Divider, Loader };
+export { Divider, Loader, Footer, Layout };

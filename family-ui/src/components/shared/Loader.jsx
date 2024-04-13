@@ -1,4 +1,4 @@
-import {Divider} from "@shared";
+import { Divider } from "@shared";
 
 function Loader(props) {
   if (props.isProfileItem) {
@@ -24,7 +24,7 @@ function Loader(props) {
     );
   } else {
     return (
-      <div className="p-8 max-w-sm w-full mx-auto">
+      <div className="mt-52 p-8 max-w-sm w-full mx-auto">
         <div className="animate-pulse flex-col">
           <div className="rounded-full bg-slate-400 h-32 w-32 mx-auto"></div>
           {/* <div className="flex-1 items-center pt-8">

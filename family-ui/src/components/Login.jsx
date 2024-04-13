@@ -36,7 +36,7 @@ const Login = () => {
         ref={inputRef}
         type="text"
         className="border-2 border-black px-3 py-3 focus:outline-none text-sm w-3/5 rounded text-center"
-        placeholder="Code"
+        placeholder="code"
       />
       <button
         className="px-5 h-10 bg-black text-white rounded w-3/5"
