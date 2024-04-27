@@ -24,15 +24,9 @@ function Loader(props) {
     );
   } else {
     return (
-      <div className="mt-52 p-8 max-w-sm w-full mx-auto">
+      <div className="p-8 max-w-sm w-full mx-auto">
         <div className="animate-pulse flex-col">
           <div className="rounded-full bg-slate-400 h-32 w-32 mx-auto"></div>
-          {/* <div className="flex-1 items-center pt-8">
-            <div className="space-y-3">
-              <div className="h-2 bg-slate-400 rounded w-28"></div>
-              <div className="h-2 bg-slate-400 rounded w-24"></div>
-            </div>
-          </div> */}
         </div>
       </div>
     );

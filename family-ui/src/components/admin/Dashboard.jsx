@@ -1,28 +1,19 @@
-import { Link } from "react-router-dom";
-
 const Dashboard = () => {
   return (
-    <div className="container">
-      <ul className="flex">
-        <li className="mr-6">
-          <Link
-            to={"/admin/add-profile"}
-            className="text-blue-500 hover:text-blue-800"
-          >
-            Add Profile
-          </Link>
-        </li>
-      </ul>
-
+    <div>
       <input
         // ref={inputRef}
+        id="profile"
         type="text"
-        className="px-2 py-1 focus:outline-none"
+        className="px-3 py-2 focus:outline-none mt-4"
         placeholder="Search profiles"
       />
-      <button className="ml-2 w-24 px-3 py-1 bg-green-700 text-white">
-        Submit
-      </button>
+      <a
+        className="inline-block rounded border ml-2 border-indigo-600 bg-indigo-600 px-10 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+        href="#"
+      >
+        Search
+      </a>
     </div>
   );
 };

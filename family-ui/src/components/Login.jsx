@@ -32,6 +32,7 @@ const Login = () => {
 
   return (
     <div className="h-screen flex flex-col items-center justify-center gap-2">
+      <h3 className="text-2xl font-bold">MY FAMILY</h3>
       <input
         ref={inputRef}
         type="text"

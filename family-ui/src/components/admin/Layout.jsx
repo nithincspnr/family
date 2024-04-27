@@ -1,5 +1,6 @@
-import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import Header from "./Header";
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -14,7 +15,8 @@ const AdminLayout = () => {
   }, [isAdminLoggedIn, navigate]);
 
   return (
-    <div className="container mx-auto h-full">
+    <div className="container mx-auto px-28 h-full">
+      <Header />
       <Outlet />
     </div>
   );
