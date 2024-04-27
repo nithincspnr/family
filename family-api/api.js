@@ -38,7 +38,7 @@ module.exports = async function (app, opts) {
 
   // Search Profiles
   app.get("/search", async (request, reply) => {
-    const DEFAULT_LIMIT = 10;
+    const DEFAULT_LIMIT = 5;
     const params = [`%${request.query.q}%`];
 
     if (request.query.limit) {

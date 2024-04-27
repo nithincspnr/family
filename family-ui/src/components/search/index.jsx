@@ -14,7 +14,6 @@ const searchProfiles = async ({ queryKey }) => {
 
 function Search() {
   const [searchQuery, setSearchQuery] = useState("");
-
   const {
     data = { results: [] },
     error,
@@ -27,7 +26,7 @@ function Search() {
   const onSearchSubmit = (query) => {
     setSearchQuery(query);
     if (query && query?.length > 2) {
-      // When refetch triggered, it was using previous searchQuery value
+      // refetch in setTimeout will pick latest searchQuery value
       setTimeout(() => refetch());
     }
   };
