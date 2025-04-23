@@ -5,6 +5,7 @@ interface AvatarProps {
   className: string;
   width: number | string;
   height: number | string;
+  onClick?: () => void;
 }
 
 const Avatar = ({ width, height, imageUrl, ...props }: AvatarProps) => {

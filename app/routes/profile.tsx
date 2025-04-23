@@ -1,10 +1,17 @@
-import type { Route } from "./+types/home";
-import { Profile } from "../profile/profile";
+import type { Route } from "../+types/root";
 
-export function meta({}: Route.MetaArgs) {
+import { Profile } from "~/components/profile/profile";
+import { getProfileDetails } from "~/utils/queries.server";
+
+export const loader = async ({ params }: Route.LoaderArgs) => {
+  const userDetails = await getProfileDetails(params.id);
+  return userDetails;
+};
+
+export function meta({ data }: Route.MetaArgs) {
   return [
-    { title: "Search for your family members!" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: data?.name },
+    // { name: "description", content: "Welcome to React Router!" },
   ];
 }
 
