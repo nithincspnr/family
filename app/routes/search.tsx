@@ -1,13 +1,27 @@
-import type { Route } from "./+types/home";
-import { Search } from "../search/search";
+import type { Route } from "../+types/root";
 
+import SearchBox from "~/components/search/search";
+import SearchResult from "~/components/search/result";
+import { searchProfiles } from "~/utils/queries.server";
+
+export const action = async ({ request }: { request: Request }) => {
+  const formData = await request.formData();
+  const searchQuery = formData.get("searchQuery");
+  const result = await searchProfiles(searchQuery as string);
+  return result;
+};
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Search for your family members!" },
-    { name: "description", content: "Welcome to React Router!" },
+    { name: "description", content: "Search for your family members!" },
   ];
 }
 
-export default function Home() {
-  return <Search />;
+export default function Search() {
+  return (
+    <>
+      <SearchBox />
+      <SearchResult />
+    </>
+  );
 }

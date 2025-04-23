@@ -6,9 +6,9 @@ import {
 } from "@react-router/dev/routes";
 
 export default [
-  layout("layout/layout.tsx", [
+  layout("components/shared/layout.tsx", [
     index("routes/home.tsx"),
     route("search", "routes/search.tsx"),
-    route("profile", "routes/profile.tsx"),
+    route("profile/:id", "routes/profile.tsx"),
   ]),
 ] satisfies RouteConfig;
