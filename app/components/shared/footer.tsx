@@ -31,7 +31,7 @@ const Footer = () => {
         </Link>
       </div>
       <div className="basis-1/3">
-        <Link to={"/profile/2"} className="flex flex-col items-center gap-1">
+        <Link to={"/settings"} className="flex flex-col items-center gap-1">
           <img
             className="cursor-pointer"
             src={Settings}

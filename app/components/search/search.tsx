@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Form, useNavigate, useSubmit } from "react-router";
 
 import back from "~/assets/back.svg";
+import Footer from "~/components/shared/footer";
 
 export default function Search() {
   const submit = useSubmit();
@@ -26,10 +27,9 @@ export default function Search() {
     <>
       <div className="flex px-4 py-8">
         <img
-          width={20}
           src={back}
           onClick={() => navigate(-1)}
-          className="cursor-pointer"
+          className="cursor-pointer h-5 w-5"
         />
         <h1 className="text-2xl m-auto">Search</h1>
       </div>
@@ -52,6 +52,7 @@ export default function Search() {
           </button>
         </div>
       </Form>
+      <Footer />
     </>
   );
 }

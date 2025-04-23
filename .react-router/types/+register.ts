@@ -9,6 +9,7 @@ declare module "react-router" {
 type Params = {
   "/": {};
   "/search": {};
+  "/settings": {};
   "/profile/:id": {
     "id": string;
   };

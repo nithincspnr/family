@@ -1,9 +1,8 @@
-import { useRef } from "react";
+import { useState } from "react";
 import { Link, useLoaderData, useNavigate, useNavigation } from "react-router";
 
 import Avatar from "./avatar";
 import back from "~/assets/back.svg";
-import Divider from "~/components/shared/divider";
 import {
   ProfileImageLoader,
   ProfileListItemLoader,
@@ -14,6 +13,7 @@ export function Profile() {
   const data = useLoaderData();
   const navigate = useNavigate();
   const { state } = useNavigation();
+  const [openModal, setOpenModal] = useState(false);
 
   const isLoadingState = state === "submitting" || state === "loading";
   const showParent = data.parent_one_id || data.parent_two_id;
@@ -22,13 +22,13 @@ export function Profile() {
     <>
       <div className="flex px-4 py-8">
         <img
-          width={20}
           src={back}
           onClick={() => navigate(-1)}
-          className="mr-24 cursor-pointer"
+          className="mr-24 cursor-pointer h-5 w-5"
         />
       </div>
-      {/* <div className="py-8"> */}
+
+      {/* Profile Image and Info */}
       {isLoadingState ? (
         <ProfileImageLoader />
       ) : (
@@ -38,6 +38,7 @@ export function Profile() {
             height={128}
             className="mx-auto "
             imageUrl={data.image_url}
+            onClick={() => data.image_url && setOpenModal(!openModal)}
           />
           <div className="pt-8 flex justify-center items-center">
             <div>
@@ -77,7 +78,6 @@ export function Profile() {
                   <p className="text-sm font-normal">{data?.partner_place}</p>
                 </div>
               </div>
-              <Divider />
             </>
           )}
 
@@ -112,7 +112,6 @@ export function Profile() {
                   </div>
                 )
               )}
-              <Divider />
             </>
           )}
 
@@ -170,10 +169,31 @@ export function Profile() {
                   </div>
                 </div>
               )}
-              <Divider />
             </>
           )}
         </>
+      )}
+
+      {/* Modal for the Profile image */}
+      {openModal && (
+        <div
+          onClick={() => setOpenModal(!openModal)}
+          className="fixed z-10 left-0 top-0 w-full h-full overflow-auto backdrop-blur-sm"
+        >
+          <div
+            style={{ position: "absolute" }}
+            className="position-static top-[25%] left-[50%] translate-x-[-50%] translate-y-[-50%] cursor-pointer bg-white p-2"
+          >
+            <img
+              className=""
+              src={data.image_url}
+              width={200}
+              height={200}
+              // onClick={this.handleShowDialog}
+              alt="no image"
+            />
+          </div>
+        </div>
       )}
       <Footer />
     </>

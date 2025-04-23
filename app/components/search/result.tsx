@@ -24,10 +24,10 @@ const Result = () => {
   const data = useActionData();
   const { state } = useNavigation();
   const isLoadingState = state === "submitting" || state === "loading";
+  const noDataFound = data && data.length === 0 && state.includes("idle");
 
   return (
     <>
-      <h3 className="text-sm font-semibold mt-8 mb-6 px-4">All Results</h3>
       {isLoadingState && (
         <>
           <ProfileListItemLoader key={1} />
@@ -38,8 +38,12 @@ const Result = () => {
       {data && data.length > 0 && !isLoadingState
         ? data.map((profile: ProfileData) => (
             <>
+              <h3 className="text-sm font-semibold mt-8 mb-6 px-4">
+                All Results
+              </h3>
               {/* <Divider /> */}
               <ProfileItem
+                key={profile.id}
                 id={profile.id}
                 name={profile.name}
                 place={profile.place}
@@ -50,12 +54,19 @@ const Result = () => {
         : null}
 
       {/* No data found */}
-      <img
-        width={160}
-        src={NoData}
-        alt="No Data"
-        className="mx-auto mt-8 mb-4"
-      />
+      {noDataFound && (
+        <>
+          <h3 className="text-sm font-semibold text-center mt-20">
+            No profiles found
+          </h3>
+          <img
+            width={160}
+            src={NoData}
+            alt="No Data"
+            className="mx-auto mt-8 mb-4"
+          />
+        </>
+      )}
     </>
   );
 };
